@@ -1,0 +1,27 @@
+{
+	"name": "canva-clone-app",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"server": "nodemon server.js",
+		"client": "npm run dev --prefix frontend",
+		"start": "node server.js",
+		"client-build": "npm run build --prefix frontend",
+		"dev": "concurrently \" npm run server \" \" npm run client \""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "module",
+	"description": "",
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^17.2.3",
+		"express": "^5.1.0",
+		"mongoose": "^8.19.3",
+		"nodemon": "^3.1.10"
+	},
+	"devDependencies": {
+		"concurrently": "^9.2.1"
+	}
+}
