@@ -23,14 +23,17 @@ if (process.env.NODE_ENV === 'local') {
 const dbConnect = async () => {
 	try {
 		if (process.env.NODE_ENV === 'local') {
+			console.log("Connecting to database...")
 			await mongoose.connect(process.env.LOCAL_DB_URI)
 			console.log("Connected to Local Database...")
 		} else {
+			console.log("Connecting to database...")
 			await mongoose.connect(process.env.MONGODB_URI)
 			console.log("Connected to Production Database...")
 		}
 	} catch (error) {
 		console.log("Database connection Failed.")
+		console.error("Database connection Failed:", error);
 	}
 }
 dbConnect()
@@ -40,7 +43,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, "frontend", "dist")))
-	app.get('*', (req, res) => {
+	app.get(/(.*)/, (req, res) => {
 		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"))
 	})
 }
